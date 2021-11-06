@@ -16,7 +16,7 @@ public:
 	int SetOne(int);		//Установить Одно значение
 	void CLS();			//Очистка экрана
 	int  MaxControl();	//Контроль max кол-ва объектов на поле
-	void Print(int x, int y, char z);		//Вывод игрового поля
+	void Print(int a, int b, char z, bool game);	//Вывод игрового поля
 	
 private:
 	int x, y;		//Ширина и длина игровогополя

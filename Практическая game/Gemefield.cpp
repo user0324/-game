@@ -1,6 +1,8 @@
 // Реализация класса игровоеполе
 #include<iostream>
 #include"Gamefield.h"
+#include"Object.h"
+#include"Cell.h"
 using std::cout;
 using std::endl;
 
@@ -13,7 +15,7 @@ Gamefield::Gamefield()		//Конструктор класса игровоеполе
 }
 Gamefield::~Gamefield()		//Деструкторы класса игровоеполе удаление в обратном порядке потому что данные в стеке Но........
 {
-	cout << "~Clasic Destruktor";
+	cout << "~Clasic Destruktor Gamefield";
 	//для отладки
 	PrintXY();
 }
@@ -63,8 +65,9 @@ int Gamefield::MaxControl()		//Контроль max кол-ва объектов на поле
 	int z = x * y;
 	return z;
 }
-void Gamefield::Print(int x_, int y_, char z)		//Вывод игрового поля
+void Gamefield::Print(int x_, int y_, char z, bool game)		//Вывод игрового поля
 {
+	game = false;
 	CLS();
 	char border = '#';
 	char unit = z;
