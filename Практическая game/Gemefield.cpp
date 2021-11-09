@@ -56,57 +56,12 @@ void Gamefield::SetXY(int _x, int y)  //Установка значение игровогополя
 	x = _x >= 2 ? _x : 2;			//Проверка значения больше 2 
 	this->y = y >= 2 ? y : 2;		//Спецально для разнообразия другой метод
 }
-void Gamefield::CLS()		//Очистка экрана
-{
-	system("cls");
-}
 int Gamefield::MaxControl()		//Контроль max кол-ва объектов на поле
 {
 	int z = x * y;
 	return z;
 }
-void Gamefield::Print(int x_, int y_, char z, bool game)		//Вывод игрового поля
-{
-	game = false;
-	CLS();
-	char border = '#';
-	char unit = z;
-	for (int j = 0; j < this->x + 2; j++)
-	{
-		cout << border << " ";
-	}
-	cout << endl;
-	for (int yi = 1; yi <= this->y; yi++)
-	{
-		cout << border;
-		if (y_ == yi)
-		{
-			for (int i = 1; i <= this->x * 2; i++)
-			{
-				if (x_ * 2 == i)
-				{
-					cout << unit;
-				}
-				else
-				cout << " ";
-			}
-			cout << " " << border << endl;
-		}
-		if (yi != y_)
-		{
-			for (int xi = 1; xi <= this->x * 2; xi++)
-			{
-				cout << " ";
-			}
-			cout << " " << border << endl;
-		}
-	}
-	for (int j = 0; j < this->x + 2; j++)
-	{
-		cout << border << " ";
-	}
-	cout << endl;
-}
+
 
 
 

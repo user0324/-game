@@ -127,12 +127,14 @@
     <ClCompile Include="Gamesource.cpp" />
     <ClCompile Include="Gameunit.cpp" />
     <ClCompile Include="Gemefield.cpp" />
+    <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Gamefield.h" />
     <ClInclude Include="Gameunit.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Screen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
