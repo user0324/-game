@@ -5,6 +5,7 @@
 #include"Gamefield.h"
 #include"Gameunit.h"
 #include"Cell.h"
+#include"Object.h"
 using std::cout;
 using std::endl;
 using std::cin;

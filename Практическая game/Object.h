@@ -1,7 +1,6 @@
+// Определение класса Объект 
 #pragma once
-#include "Cell.h"
-class Object :
-	public Cell
+class Object
 {
 	struct ObjectXYZ		//Описание объекта
 	{
@@ -17,6 +16,5 @@ class Object :
 	}listok;
 	int num;		//Возможное кол-во объектов
 public:
-	
+	Object();
 };
-
