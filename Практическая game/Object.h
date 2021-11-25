@@ -1,20 +1,17 @@
-// Определение класса Объект 
-#pragma once
+#pragma once			//Определение класса объект
+#include<vector>
+class Gamefield;
 class Object
 {
-	struct ObjectXYZ		//Описание объекта
-	{
-		int x;		//Координаты объекта на поле по оси Х
-		int y;		//Координаты объекта на поле по оси Y
-		char Z;		//Графическое изображение объекта
-	}ObXYZ;
-	struct DataXYZ		//Структура для хранения данных о объектах
-	{
-		ObjectXYZ z;
-		DataXYZ *next;		//Cписок адресная часть на следующий элемент
-		DataXYZ *prev;		//Список адресная часть на предыдущий элемент
-	}listok;
-	int num;		//Возможное кол-во объектов
+	int dotX, dotY;
+	char mapping;
 public:
-	Object();
+	Object();			//классический конструктор
+	~Object();			//классический деструктор
+	int GetDotX() const { return dotX; }		//получить координату объекта в точке Х
+	int GetDotY() const { return dotY; }		//получить координату объекта в точке Y
+	char GetMapping() const { return mapping; }			//получить графическое отображение объекта
+	void SetObject(int, int, char);				//задать 1 объект
+	std::vector<Object*> CreatingObject(int, Gamefield&);				//Инициализация объектов согласно размерам поля
 };
+

@@ -1,12 +1,12 @@
-// Определение класса Экран Вывод информации в консоль и задание настроек перед началом игры
-#pragma once
+#pragma once			// Определение класса экран
 class Gamefield;
 class Screen
 {
 	bool game;
 public:
-	Screen();		//Класический конструктор
-	void SetGame(bool);		//Установить значение класса Экран
-	void CLS()const;			//Очистка экрана
-	void PrintScr(Gamefield &, int y, int x, char );		//Вывод игрового поля 
+	Screen();		//классический конструктор
+	void CLS()const;		//очистка экрана
+	/*void PrintScreen()*/
+	int GoGamefield(Gamefield&);		//задание размеров поля
 };
+

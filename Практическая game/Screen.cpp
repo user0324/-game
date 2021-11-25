@@ -1,62 +1,73 @@
-// Реализация класса игровоеполе
+//Реализация класса экран
 #include<iostream>
 #include"Gamefield.h"
-#include"Screen.h"
+#include "Screen.h"
 using std::cout;
 using std::endl;
+using std::cin;
 
-Screen::Screen()		//Конструктор класса экран
+Screen::Screen()		//классический конструктор
 {
-	game = false;
-	cout << "Clasic Konstruktor";
+	this->game = true;
 }
-void Screen::SetGame(bool game_)		//Установить значение класса Экран
+void Screen::CLS()const			//очистка экрана
 {
-	game = game_;
+	system("cls");		//для windows
+	/*system("clear");*/		//для linux
 }
-void Screen::CLS() const 	//Очистка экрана
+int Screen::GoGamefield(Gamefield& a)		//задание размеров поля
 {
-	system("cls"); // для винды
-	/*system ("clear"); */	// включить для linux
-}
-void Screen::PrintScr(Gamefield &field, int y_, int x_, char object)		//Вывод игрового поля
-{
-	CLS();
-	char border = '#';
-	char unit = object;
-	for (int j = 0; j < field.GetX() + 2; j++)
+	setlocale(LC_ALL, "Russian");
+	Gamefield field;		//создание обекта в стеке
+	int Y, X;
+	cout << "Задайте размеры игровогопля:" << endl;
+	while (true)
 	{
-		cout << border << " ";
-	}
-	cout << endl;
-	for (int yi = 1; yi <= field.GetY(); yi++)
-	{
-		cout << border;
-		if (y_ == yi)
+		cout << "Задайте количество строк:" << endl;
+		cin >> Y;
+		if (cin.fail())
 		{
-			for (int i = 1; i <= field.GetX() * 2; i++)
-			{
-				if (x_ * 2 == i)
-				{
-					cout << unit;
-				}
-				else
-					cout << " ";
-			}
-			cout << " " << border << endl;
+			cout << "Это должно быть число" << endl;
+			cin.clear();
+			cin.ignore(32767, '\n');
+			continue;
 		}
-		if (yi != y_)
+		if (Y < 2)
 		{
-			for (int xi = 1; xi <= field.GetX() * 2; xi++)
-			{
-				cout << " ";
-			}
-			cout << " " << border << endl;
+			cout << " Значение должно быть больше 2-х" << endl;
+			continue;
 		}
+		if (Y > 25)
+		{
+			cout << " Возможное значение <В диапозоне от 2-25>" << endl;
+			continue;
+		}
+		else break;
 	}
-	for (int j = 0; j < field.GetX() + 2; j++)
+	while (true)
 	{
-		cout << border << " ";
+		cout << "Задайте количество столбцов:" << endl;
+		cin >> X;
+		if (cin.fail())
+		{
+			cout << "Это должно быть число" << endl;
+			cin.clear();
+			cin.ignore(32767, '\n');
+			continue;
+		}
+		if (X < 2)
+		{
+			cout << " Значение должно быть больше 2-х" << endl;
+			continue;
+		}
+		if (X > 25)
+		{
+			cout << " Возможное значение <В диапозоне от 2-25>" << endl;
+			continue;
+		}
+		else break;
 	}
-	cout << endl;
+	field.SetAxisYX(Y, X);
+	int SumObjectov = field.MaxControl();
+	return SumObjectov;
 }

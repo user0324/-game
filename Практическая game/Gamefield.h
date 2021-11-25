@@ -1,23 +1,17 @@
-// ќпределение класса игровоеполе
-#pragma once
-
-class Gamefield   // Class gamefield
-{ 
+#pragma once				//ќпределение класса игровоеполе
+#include<vector>
+class Object;
+class Gamefield
+{
+	int axisX, axisY;	//оси игровогопол€
 public:
-	Gamefield();
-	explicit Gamefield(int);			// онструктор преобразовани€
-	Gamefield(int, int);		//параметрический конструктор
-	~Gamefield();
-	Gamefield(const Gamefield &);
-	int  GetX() const { return x; } // inline по умолчанию
-	int  GetY() const;
-	void PrintXY();		//¬ывод значений пол€
-	void SetXY(int x, int y);	//”становить значение игровогопол€
-	int SetOne(int);		//”становить ќдно значение
-	int  MaxControl();	// онтроль max кол-ва объектов на поле
+	Gamefield();		//класический конструктор
+	~Gamefield();		//класический деструктор
+	int GetAxisX() const { return axisX; }		//inline получить значение оси ’
+	int GetAxisY() const;			//получить значение оси Y
+	void SetAxisYX(int, int);		//установить значение игровоеполе
+	int MaxControl() const;			//максимально возможное кол-во объектов на поле
+	void DefinitionField(std::vector<std::vector<Object*>> Field);		//инициализаци€ пол€	
 	
-private:
-	int x, y;		//Ўирина и длина игровогопол€
 };
-inline int Gamefield::GetY() const { return y; }
-
+inline int Gamefield::GetAxisY() const { return axisY; }		//получить значение оси Y
