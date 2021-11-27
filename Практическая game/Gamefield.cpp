@@ -27,14 +27,20 @@ int Gamefield::MaxControl()	const		//максимально возможное кол-во объектов на по
 }
 void Gamefield::DefinitionField(std::vector<std::vector<Object*>> Field)		//инициализация игровогополя
 {
-	Field.resize(axisX);
-	for (int i = 0; i < Field.size(); i++) {
-		Field[i].resize(axisY);
+	char enclosure = '#';
+	cout << enclosure << " ";
+	for (int i = 0; i < axisY; i++) {
+		cout << enclosure << " ";
 	}
-	for (std::vector<Object*> X : Field) {
+	cout << enclosure << endl << enclosure << " ";
+	for (std::vector<Object*> X : Field) {		
 		for (Object* x : X) {
 			std::cout << x->GetMapping() << ' ';
 		}
-		cout << endl;
+		cout << enclosure << endl << enclosure << " ";
 	}
+	for (int i = 0; i < axisY; i++) {
+		cout << enclosure << " ";
+	}
+	cout << enclosure << endl;
 }

@@ -18,35 +18,11 @@ void Screen::CLS()const			//очистка экрана
 int Screen::GoGamefield(Gamefield& a)		//задание размеров поля
 {
 	setlocale(LC_ALL, "Russian");
-	Gamefield field;		//создание обекта в стеке
 	int Y, X;
 	cout << "Задайте размеры игровогопля:" << endl;
 	while (true)
 	{
 		cout << "Задайте количество строк:" << endl;
-		cin >> Y;
-		if (cin.fail())
-		{
-			cout << "Это должно быть число" << endl;
-			cin.clear();
-			cin.ignore(32767, '\n');
-			continue;
-		}
-		if (Y < 2)
-		{
-			cout << " Значение должно быть больше 2-х" << endl;
-			continue;
-		}
-		if (Y > 25)
-		{
-			cout << " Возможное значение <В диапозоне от 2-25>" << endl;
-			continue;
-		}
-		else break;
-	}
-	while (true)
-	{
-		cout << "Задайте количество столбцов:" << endl;
 		cin >> X;
 		if (cin.fail())
 		{
@@ -67,7 +43,30 @@ int Screen::GoGamefield(Gamefield& a)		//задание размеров поля
 		}
 		else break;
 	}
-	field.SetAxisYX(Y, X);
-	int SumObjectov = field.MaxControl();
+	while (true)
+	{
+		cout << "Задайте количество столбцов:" << endl;
+		cin >> Y;
+		if (cin.fail())
+		{
+			cout << "Это должно быть число" << endl;
+			cin.clear();
+			cin.ignore(32767, '\n');
+			continue;
+		}
+		if (Y < 2)
+		{
+			cout << " Значение должно быть больше 2-х" << endl;
+			continue;
+		}
+		if (Y > 25)
+		{
+			cout << " Возможное значение <В диапозоне от 2-25>" << endl;
+			continue;
+		}
+		else break;
+	}
+	a.SetAxisYX(Y, X);
+	int SumObjectov = a.MaxControl();
 	return SumObjectov;
 }

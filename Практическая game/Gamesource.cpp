@@ -11,13 +11,13 @@ using std::cin;
 
 int main()
 {
-	Screen a;
-	Gamefield b;
+	Screen a;			//создание объекта в стеке
+	Gamefield b;		//создание объекта в стеке
 	int SumObjectov = a.GoGamefield(b);
 
-	cout << endl << SumObjectov << endl;
-	Object c;
-	std::vector<Object*> a1;
-	a1 = c.CreatingObject(SumObjectov, b);
-
+	cout << endl << SumObjectov << endl;		//для отладки
+	Object c;			//создание объекта в стеке
+	std::vector<std::vector<Object*>> a1;		//создание объекта в куче
+	a1 = c.CreatingObject(b);
+	b.DefinitionField(a1);
 }
