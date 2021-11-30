@@ -66,7 +66,7 @@ int Screen::GoGamefield(Gamefield& a)		//задание размеров поля
 		}
 		else break;
 	}
-	a.SetAxisYX(Y, X);
+	a.SetAxisYX(X, Y);
 	int SumObjectov = a.MaxControl();
 	return SumObjectov;
 }

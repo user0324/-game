@@ -7,6 +7,7 @@ class Gamefield
 public:
 	Gamefield();		//класический конструктор
 	~Gamefield();		//класический деструктор
+	Gamefield(const Gamefield&);		//конструктор копирования просто чтобы был в данном классе хватает и побитового копирования 
 	int GetAxisX() const { return axisX; }		//inline получить значение оси Х
 	int GetAxisY() const;			//получить значение оси Y
 	void SetAxisYX(int, int);		//установить значение игровоеполе

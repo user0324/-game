@@ -9,7 +9,13 @@ Gamefield::Gamefield()			//Конструктор класса игровоеполе
 {
 	this->axisX = 2;
 	this->axisY = 2;
-	cout << "Clasic konstruktor class Gamefield" << endl;		//для отладки
+	cout << "Clasic construktor class Gamefield" << endl;		//для отладки
+}
+Gamefield::Gamefield(const Gamefield& field)		//конструктор копирования просто чтобы был в данном классе хватает и побитового копирования 
+{
+	axisX = field.axisX;
+	axisY = field.axisY;
+	cout << "Clasic copy constructor class Gamefield" << endl;		//для отладки
 }
 Gamefield::~Gamefield()			//Деструктор класа игровоеполе удаленеи в обратном порядке потому что данные в стеке...
 {

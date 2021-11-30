@@ -125,11 +125,15 @@
   <ItemGroup>
     <ClCompile Include="Gamefield.cpp" />
     <ClCompile Include="Gamesource.cpp" />
+    <ClCompile Include="Iterator.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gamefield.h" />
+    <ClInclude Include="Iterator.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Screen.h" />
   </ItemGroup>

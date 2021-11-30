@@ -5,6 +5,7 @@
 #include"Gamefield.h"
 #include"Object.h"
 #include"Screen.h"
+#include"Matrix.h"
 using std::cout;
 using std::endl;
 using std::cin;
@@ -20,4 +21,7 @@ int main()
 	std::vector<std::vector<Object*>> a1;		//создание объекта в куче
 	a1 = c.CreatingObject(b);
 	b.DefinitionField(a1);
+	std::vector<std::vector<Object*>> a2;		//создание объекта в куче
+	a2 = c.SetObject(b);
+	b.DefinitionField(a2);
 }
