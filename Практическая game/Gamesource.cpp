@@ -4,24 +4,21 @@
 #include<conio.h>
 #include"Gamefield.h"
 #include"Object.h"
-#include"Screen.h"
-#include"Matrix.h"
+#include"Unit.h"
+
 using std::cout;
 using std::endl;
 using std::cin;
 
 int main()
 {
-	Screen a;			//создание объекта в стеке
-	Gamefield b;		//создание объекта в стеке
-	int SumObjectov = a.GoGamefield(b);
-
-	cout << endl << SumObjectov << endl;		//для отладки
-	Object c;			//создание объекта в стеке
-	std::vector<std::vector<Object*>> a1;		//создание объекта в куче
-	a1 = c.CreatingObject(b);
-	b.DefinitionField(a1);
-	std::vector<std::vector<Object*>> a2;		//создание объекта в куче
-	a2 = c.SetObject(b);
+	Object a1;
+	Gamefield b(10,7);		//создание объекта в стеке
+	std::vector<std::vector <Object*> > a2 = a1.SetConsolObject(b);
+	b.DefinitionField(a2);
+	a1.SetOneObject(a2, b, 5, 5, '&');
+	a1.SetOneObject(a2, b, 3, 3, ' ');
+	Unit u;
+	a1.SetUnitObject(a2, b, u);
 	b.DefinitionField(a2);
 }

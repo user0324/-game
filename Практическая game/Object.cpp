@@ -1,8 +1,9 @@
 #include<iostream>			//Реализация класса объект
 #include<vector>
-#include<algorithm>
 #include "Object.h"
 #include"Gamefield.h"
+#include"Unit.h"
+
 using std::cout;
 using std::endl;
 using std::cin;
@@ -12,18 +13,44 @@ Object::Object()			//классический конструктор класса объект
 	this->dotX = 1;
 	dotY = 1;
 	mapping = '$';
-	cout << "Clasic сonstruktor class Object" << endl;
+	/*cout << "Clasic construktor class Object" << endl;		//для отладки*/
 }
 Object::~Object()		//классический деструктор класса объект удаление в обратном порядке
 {
-	cout << "Clasic destruktor ~Object" << endl;		//для отладки
+	/*cout << "Clasic destruktor ~Object" << endl;		//для отладки*/
 }
-std::vector<std::vector<Object*>>Object::SetObject(Gamefield& b)		//задание любых объектов в заданных координатах согласно размерам поля
+void Object::SetX(unsigned X)		//задать значение точки по оси X
+{
+	this->dotX = X;
+}
+void Object::SetY(unsigned Y)		//задать значение точки по оси Y
+{
+	this->dotY = Y;
+}
+void Object::SetM(char M)		//задать графическое изображение объекта
+{
+	this->mapping = M;
+}
+std::vector<std::vector<Object*> >Object::Forma(Gamefield& b)		//создание матрицы Объектов заданного поля
+{
+	std::vector<std::vector<Object*>>SumObject;		//объявление переменной вектор векторов
+	SumObject.resize(b.GetAxisX());					//задание размера по оси Х столбцы
+	for (int i = 0; i < SumObject.size(); i++) {
+		SumObject[i].resize(b.GetAxisY());			//задание размера по оси Y строки
+	}			//создана матрица пока пустая
+	for (int i = 0; i < b.GetAxisX(); i++) {		//в циклах заполняю матрицу размера XY объектами Конструктором
+		for (int j = 0; j < b.GetAxisY(); j++) {
+			SumObject[i][j] = new Object();
+		}
+	}
+	return SumObject;
+}
+std::vector<std::vector<Object*>>Object::SetConsolObject(Gamefield& b)		//задание любых объектов в заданных координатах согласно размерам поля
 {
 	setlocale(LC_ALL, "Russian");
 	cout << "Максимально возможное кол-во объектов на поле: " << "(" << b.MaxControl() << ")" << endl;
 	cout << "Введите кол-во объектов, которое требуется создать:";
-	int kol;
+	unsigned kol;
 	while (true)
 	{
 		cin >> kol;
@@ -42,7 +69,7 @@ std::vector<std::vector<Object*>>Object::SetObject(Gamefield& b)		//задание любы
 		else break;
 	}
 	char View = '@';			//изображение объекта пока для отладки  const
-	int LineX, ColumnY;
+	unsigned LineX, ColumnY;
 	std::vector<Object>SetXY(kol); //переменные по осям 
 	for (int i = 0; i < SetXY.size(); i++) {
 		while (true)
@@ -85,48 +112,19 @@ std::vector<std::vector<Object*>>Object::SetObject(Gamefield& b)		//задание любы
 		SetXY[i].dotY = ColumnY - 1;
 		SetXY[i].mapping = View;
 	}
-	/*std::sort(SetXY.begin(), SetXY.end(), [](const Object& lhs, const Object& rhs)		//сорировка по заданному полю хз 
-	{
-		return lhs.GetDotX() < rhs.GetDotX();										//что там ввел пользователь чтобы обрушить программу 
-	});
-	for (Object& x : SetXY) {						//для отладки
-			cout << x.GetMapping() << " ";			// выводим значение
-			cout << x.GetDotY() << " ";				//полей для проверки
-			cout << x.GetDotX() << " ";
-		cout << endl;							//сортировки
-	}*/
-	std::vector<std::vector<Object*>>SumObjectv;		//объявление переменной вектор векторов
-	SumObjectv.resize(b.GetAxisX());					//задание размера по оси Х строки
-	for (int i = 0; i < SumObjectv.size(); i++) {
-		SumObjectv[i].resize(b.GetAxisY());			//задание размера по оси Y столбцы
-	}			//создана матрица пока пустая
-	for (int i = 0; i < b.GetAxisX(); i++) {		
-		for (int j = 0; j < b.GetAxisY(); j++) {
-			SumObjectv[i][j] = new Object();		//в циклах заполняю матрицу размера XY объектами Конструктора класса
-		}
-	}
+	std::vector<std::vector<Object*> > SumObject = Forma(b);
 	for (Object& x : SetXY) {
-		SumObjectv[x.GetDotX()][x.GetDotY()]->mapping = x.GetMapping();
+		SumObject[x.GetDotX()][x.GetDotY()]->mapping = x.GetMapping();
 	}
-	return SumObjectv;
-}
-std::vector<std::vector<Object*>> Object::CreatingObject(Gamefield& b)				//Инициализация объектов согласно размерам поля
-{
-	std::vector<std::vector<Object*>>SumObject;		//объявление переменной вектор векторов
-	SumObject.resize(b.GetAxisX());					//задание размера по оси Х столбцы
-	for (int i = 0; i < SumObject.size(); i++) {
-		SumObject[i].resize(b.GetAxisY());			//задание размера по оси Y строки
-	}			//создана матрица пока пустая
-	for (int i = 0; i < b.GetAxisX(); i++) {		//в циклах заполняю матрицу размера XY объектами Конструктором
-		for (int j = 0; j < b.GetAxisY(); j++) {
-			SumObject[i][j] = new Object();
-		}
-	}
-	/*for (std::vector<Object*> X : SumObject) {			//для отладки
-		for (Object* x : X) {
-			std::cout << x->GetMapping() << ' ';
-		}
-		cout << endl;
-	}*/
 	return SumObject;
+}
+std::vector<std::vector<Object*>> Object::SetOneObject(std::vector<std::vector<Object*> >One, Gamefield& b, unsigned X, unsigned Y, char mapp)	//задание одного обекта (координаты и вид) "Добавить"
+{
+	One[X][Y]->mapping = mapp;
+	return One;
+}
+std::vector<std::vector<Object*>> Object::SetUnitObject(std::vector<std::vector<Object*> > one, Gamefield& b, Unit& u)			//add Unita
+{
+	one[u.GetDotX()][u.GetDotY()]->mapping = u.GetMapping();
+	return one;
 }

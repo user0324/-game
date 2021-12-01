@@ -3,16 +3,17 @@
 class Object;
 class Gamefield
 {
-	int axisX, axisY;	//оси игровогополя
+	unsigned axisX, axisY;	//оси игровогополя
+    std::vector<std::vector<Object> > Matrix;			//игровоеполе основной объект для работы 
 public:
-	Gamefield();		//класический конструктор
+	Gamefield();			//класический конструктор по умолчанию
+	Gamefield(unsigned Line, unsigned ColumnY);		//класический конструктор игровогополя
 	~Gamefield();		//класический деструктор
 	Gamefield(const Gamefield&);		//конструктор копирования просто чтобы был в данном классе хватает и побитового копирования 
-	int GetAxisX() const { return axisX; }		//inline получить значение оси Х
-	int GetAxisY() const;			//получить значение оси Y
-	void SetAxisYX(int, int);		//установить значение игровоеполе
-	int MaxControl() const;			//максимально возможное кол-во объектов на поле
+	unsigned GetAxisX() const { return axisX; }		//inline получить значение оси Х строки
+	unsigned GetAxisY() const;			//получить значение оси Y столбцы
+	unsigned MaxControl() const;			//максимально возможное кол-во объектов на поле
 	void DefinitionField(std::vector<std::vector<Object*>> Field);		//инициализация поля	
 	
 };
-inline int Gamefield::GetAxisY() const { return axisY; }		//получить значение оси Y
+inline unsigned Gamefield::GetAxisY() const { return axisY; }		//получить значение оси Y
