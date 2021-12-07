@@ -1,6 +1,7 @@
 #pragma once				//Определение класса игровоеполе
 #include<vector>
 class Object;
+class Unit;
 class Gamefield
 {
 	unsigned axisX, axisY;	//оси игровогополя
@@ -14,6 +15,6 @@ public:
 	unsigned GetAxisY() const;			//получить значение оси Y столбцы
 	unsigned MaxControl() const;			//максимально возможное кол-во объектов на поле
 	void DefinitionField(std::vector<std::vector<Object*>> Field);		//инициализация поля	
-	
+	void MoveUnit(std::vector<std::vector<Object*> > Game, Unit&);		//движение юнита (отряда) по полю с объектами
 };
 inline unsigned Gamefield::GetAxisY() const { return axisY; }		//получить значение оси Y

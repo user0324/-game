@@ -15,6 +15,7 @@ Unit::Unit()		//конструктор по умолчанию
 	this->sumAttack = 12;
 	this->sumHealth = 12;
 	this->Quantity = 6;
+	/*cout << "Clasic construktor class Unit" << endl;*/
 }
 void Unit::SetsumArmour(int A)		//задать значение брони отряда
 {

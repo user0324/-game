@@ -1,7 +1,9 @@
 #include<iostream>				//Реализация класса игровоеполе
 #include<vector>
+#include<conio.h>
 #include "Gamefield.h"
 #include"Object.h"
+#include"Unit.h"
 using std::cout;
 using std::endl;
 
@@ -41,7 +43,6 @@ unsigned Gamefield::MaxControl()	const		//максимально возможное кол-во объектов 
 	unsigned Max = axisX * axisY;
 	return Max;
 }
-
 void Gamefield::DefinitionField(std::vector<std::vector<Object*>> Field)		//инициализация игровогополя
 {
 	char enclosure = '#';
@@ -60,4 +61,54 @@ void Gamefield::DefinitionField(std::vector<std::vector<Object*>> Field)		//иниц
 		cout << enclosure << " ";
 	}
 	cout << enclosure << endl;
+}
+void Gamefield::MoveUnit(std::vector<std::vector<Object*>> Game, Unit& u)		//движение юнита (отряда) по полю с объектами
+{
+	Object tmp;
+	Unit HeroU;
+	std::vector<std::vector<Object*> >testDel, testHero;
+	DefinitionField(Game);
+	while (true)
+	{
+		HeroU = u;
+		const unsigned X = HeroU.GetDotX();
+		const unsigned Y = HeroU.GetDotY();
+		if (!_kbhit()) {		//функция _kbhit() возвращает значение false, если на клавиатуре не нажата никакая клавиша, и значение true, если клавиша была нажата 
+			switch ( _getch())		//функции _getch(), которая ожидает нажатия клавиши на клавиатуре и возвращает символ этой клавиши без отображения этого символа на  экране 
+			{
+			case 'a':
+				if (u.GetDotY() != 0)		//Y-1
+				{
+					u.SetY(u.GetDotY() - 1);
+				}
+				break;
+			case 'd':
+				if (u.GetDotY() != axisY-1)	//Y+1
+				{
+					u.SetY(u.GetDotY() + 1);
+				}
+				break;
+			case 'w':
+				if (u.GetDotX() != 0)		//X-1
+				{
+					u.SetX(u.GetDotX() - 1);
+				}
+				break;
+			case 's':
+				if (u.GetDotX() != axisX-1)	//X+1
+				{
+					u.SetX(u.GetDotX() + 1);
+				}
+				break;
+			case 'p':
+				return;
+				break;
+			}
+			
+		}
+		testDel = tmp.DelObject(Game, X, Y);
+		testHero = tmp.SetUnitObject(testDel, u);
+		/*system("cls");*/
+		DefinitionField(testHero);
+	}
 }

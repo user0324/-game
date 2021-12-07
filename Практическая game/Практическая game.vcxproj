@@ -123,17 +123,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Attacking.cpp" />
+    <ClCompile Include="Defense.cpp" />
+    <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="FactoryAttacking.cpp" />
+    <ClCompile Include="FactoryDefense.cpp" />
+    <ClCompile Include="FactorySniper.cpp" />
+    <ClCompile Include="FactorySpearmen.cpp" />
+    <ClCompile Include="FactorySpeed.cpp" />
+    <ClCompile Include="FactorySwordsmen.cpp" />
     <ClCompile Include="Gamefield.cpp" />
     <ClCompile Include="Gamesource.cpp" />
     <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Sniper.cpp" />
+    <ClCompile Include="Spearmen.cpp" />
+    <ClCompile Include="Speed.cpp" />
+    <ClCompile Include="Swordsmen.cpp" />
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Attacking.h" />
+    <ClInclude Include="Defense.h" />
+    <ClInclude Include="Factory.h" />
+    <ClInclude Include="FactoryAttacking.h" />
+    <ClInclude Include="FactoryDefense.h" />
+    <ClInclude Include="FactorySniper.h" />
+    <ClInclude Include="FactorySpearmen.h" />
+    <ClInclude Include="FactorySpeed.h" />
+    <ClInclude Include="FactorySwordsmen.h" />
     <ClInclude Include="Gamefield.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Sniper.h" />
+    <ClInclude Include="Spearmen.h" />
+    <ClInclude Include="Speed.h" />
+    <ClInclude Include="Swordsmen.h" />
     <ClInclude Include="Unit.h" />
+    <ClInclude Include="Warror.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

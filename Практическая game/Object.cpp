@@ -123,8 +123,14 @@ std::vector<std::vector<Object*>> Object::SetOneObject(std::vector<std::vector<O
 	One[X][Y]->mapping = mapp;
 	return One;
 }
-std::vector<std::vector<Object*>> Object::SetUnitObject(std::vector<std::vector<Object*> > one, Gamefield& b, Unit& u)			//add Unita
+std::vector<std::vector<Object*>> Object::SetUnitObject(std::vector<std::vector<Object*> > one, Unit& u)			//add Unita
 {
 	one[u.GetDotX()][u.GetDotY()]->mapping = u.GetMapping();
 	return one;
 }
+std::vector<std::vector<Object*> > Object::DelObject(std::vector<std::vector<Object*> >one, unsigned X, unsigned Y)		//delete Object
+{
+	one[X][Y]->mapping = '$';
+	return one;
+}
+
