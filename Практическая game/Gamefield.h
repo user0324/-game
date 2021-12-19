@@ -7,6 +7,7 @@ class Gamefield
 	unsigned axisX, axisY;	//оси игровогополя
     std::vector<std::vector<Object> > Matrix;			//игровоеполе основной объект для работы 
 public:
+	friend class Iterator;			
 	Gamefield();			//класический конструктор по умолчанию
 	Gamefield(unsigned Line, unsigned ColumnY);		//класический конструктор игровогополя
 	~Gamefield();		//класический деструктор
